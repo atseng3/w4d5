@@ -1,0 +1,10 @@
+<table border="1">
+	<th>Cats</th>
+	<%@cats.each do |cat|%>
+	<tr>
+		<td><%=cat.name%></td>
+		<td><%=cat.color%></td>
+		<td><%=cat.age%></td>
+	</tr>
+	<%end%>
+</table>
