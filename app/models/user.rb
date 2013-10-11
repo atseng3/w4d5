@@ -1,3 +1,4 @@
+require 'bcrypt'
 class User < ActiveRecord::Base
   attr_accessible :username, :password
 
@@ -11,19 +12,15 @@ class User < ActiveRecord::Base
 
   def password=(pass)
     self.password_digest = BCrypt::Password.create(pass)
-    self.save!
   end
 
   def is_password?(pass)
+    p pass
     BCrypt::Password.new(self.password_digest).is_password?(pass)
   end
 
   def self.find_by_credentials(username, password)
     u = User.where("username = ?", username).first
-    if u.is_password?(password)
-      return u
-    else
-      nil
-    end
+    u.is_password?(password) ? u : nil
   end
 end

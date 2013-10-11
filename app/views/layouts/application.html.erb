@@ -8,6 +8,14 @@
 </head>
 <body>
 
+	<%if logged_in?%>
+		<%="Welcome back, " + current_user.username%>
+		<%= button_to "Log Out", session_url, :method => :delete %>
+	<%else%>
+		<%= button_to "Log In", new_session_url, :method => :get %>
+		<%= button_to "Sign Up", new_user_url, :method => :get %>
+	<%end%>
+
 <%= yield %>
 
 </body>
