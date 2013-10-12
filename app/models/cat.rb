@@ -1,7 +1,7 @@
 class Cat < ActiveRecord::Base
-  attr_accessible :name, :age, :birth_date, :color, :sex
+  attr_accessible :name, :age, :birth_date, :color, :sex, :user_id
 
-  validates :name, :age, :birth_date, :color, :sex, :presence => true
+  validates :name, :age, :birth_date, :color, :sex, :user_id, :presence => true
   validates :color, :inclusion => {in: %w(red green blue),
     message: "%{value} is not a valid color"}
   validates :sex, :inclusion => {in: %w(M F),
@@ -12,4 +12,9 @@ class Cat < ActiveRecord::Base
     :foreign_key => :cat_id,
     :class_name => "CatRentalRequest",
     :dependent => :destroy
+
+  belongs_to :user,
+    :primary_key => :id,
+    :foreign_key => :user_id,
+    :class_name => "User"
 end

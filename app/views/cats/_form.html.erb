@@ -1,5 +1,7 @@
 <% action_url = (action == :new) ? cats_url : cat_url(@cat) %>
 
+<%= flash[:errors] %>
+
 <form action="<%= action_url %>" method="post">
 	<input type="hidden"
 				 name="authenticity_token"

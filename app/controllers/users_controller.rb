@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to cats_url
     else
-      flash.now[:errors] = @users.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages.first
       render :new
     end
   end
